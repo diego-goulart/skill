@@ -29,11 +29,10 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+	/**
+	 * Create a new controller instance.
+	 *
+	 */
     public function __construct()
     {
         $this->middleware('guest');
@@ -49,7 +48,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'matricula' => 'required|max:8|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -64,7 +63,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'matricula' => $data['matricula'],
             'password' => bcrypt($data['password']),
         ]);
     }
