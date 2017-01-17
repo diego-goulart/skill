@@ -18,3 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
+
+	Route::group(['prefix' => 'role', 'as' => 'role.'], function (){
+
+		Route::get('/', ['as' => 'index', 'uses' => 'RoleController@index']);
+		Route::get('/add', ['as' => 'create', 'uses' => 'RoleController@create']);
+		Route::get('/edit/{id}', ['as' => 'edit', 'uses' => 'RoleController@edit']);
+		Route::post('/save', ['as' => 'store', 'uses' => 'RoleController@store']);
+		Route::put('/update/{id}', ['as' => 'update', 'uses' => 'RoleController@update']);
+		Route::get('/delete/{id}', ['as' => 'destroy', 'uses' => 'RoleController@destroy']);
+	});
+
+
+});
