@@ -4,9 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">
 
-                </div>
 
                 <div class="panel-body">
                     <h3 class="pull-left">Roles</h3>
@@ -14,6 +12,8 @@
                        class="btn btn-sm btn-primary pull-right">
                         Novo</a>
 
+                    <div class="clearfix"></div>
+                    <hr>
                     <table class="table table-bordered">
                         <thead>
                         <tr>

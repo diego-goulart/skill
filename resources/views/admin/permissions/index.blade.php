@@ -5,14 +5,15 @@
 
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>Permissões</h3>
+
+
+                <div class="panel-body">
+                    <h3 class="pull-left">Permissões</h3>
                     <a href="{{route('admin.permissions.create')}}"
                        class="btn btn-sm btn-primary pull-right">
                         Novo</a>
-                </div>
-
-                <div class="panel-body">
+                    <div class="clearfix"></div>
+                    <hr>
                     <table class="table table-bordered">
                         <thead>
                         <th>Name</th>
