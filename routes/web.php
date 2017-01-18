@@ -42,6 +42,29 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::put('permissions/update/{id}', ['as' => 'permissions.update', 'uses' => 'Admin\PermissionsController@update']);
 		Route::get('permissions/destroy/{id}', ['as' => 'permissions.destroy', 'uses' => 'Admin\PermissionsController@destroy']);
 
+
+		Route::get('users', ['as' => 'users.index', 'uses' => 'Admin\UsersController@index']);
+		Route::get('users/new', ['as' => 'users.create', 'uses' => 'Admin\UsersController@create']);
+		Route::post('users/store', ['as' => 'users.store', 'uses' => 'Admin\UsersController@store']);
+		Route::get('users/edit/{id}', ['as' => 'users.edit', 'uses' => 'Admin\UsersController@edit']);
+		Route::put('users/update/{id}', ['as' => 'users.update', 'uses' => 'Admin\UsersController@update']);
+		Route::get('users/destroy/{id}', ['as' => 'users.destroy', 'uses' => 'Admin\UsersController@destroy']);
+		Route::get('users/roles/{id}', ['as' => 'users.roles', 'uses' => 'Admin\UsersController@roles']);
+		Route::post('users/roles/{id}/store', ['as' => 'users.roles.store', 'uses' => 'Admin\UsersController@storeRole']);
+		Route::get('users/roles/{id}/revoke/{role_id}', ['as' => 'users.roles.revoke', 'uses' => 'Admin\UsersController@revokeRole']);
+		Route::get('users/active/{id}', ['as' => 'users.active', 'uses' => 'Admin\UsersController@active']);
+		Route::get('users/groups/{id}', ['as' => 'users.groups', 'uses' => 'Admin\UsersController@groups']);
+		Route::post('users/groups/{id}/store', ['as' => 'users.groups.store', 'uses' => 'Admin\UsersController@storeGroup']);
+		Route::get('users/groups/{id}/unsubscribe/{group_id}', ['as' => 'users.groups.unsubscribe', 'uses' => 'Admin\UsersController@unsubscribeGroup']);
+
+
+		Route::get('groups', ['as' => 'groups.index', 'uses' => 'Admin\GroupsController@index']);
+		Route::get('groups/new', ['as' => 'groups.create', 'uses' => 'Admin\GroupsController@create']);
+		Route::post('groups/store', ['as' => 'groups.store', 'uses' => 'Admin\GroupsController@store']);
+		Route::get('groups/edit/{id}', ['as' => 'groups.edit', 'uses' => 'Admin\GroupsController@edit']);
+		Route::put('groups/update/{id}', ['as' => 'groups.update', 'uses' => 'Admin\GroupsController@update']);
+		Route::get('groups/destroy/{id}', ['as' => 'groups.destroy', 'uses' => 'Admin\GroupsController@destroy']);
+
 	});
 
 });

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'matricula', 'password',
+        'name', 'matricula', 'password', 'active',
     ];
 
     /**
@@ -35,6 +35,12 @@ class User extends Authenticatable
 	}
 
 
+	public function groups()
+	{
+		return $this->morphToMany(Group::class, 'groupable');
+	}
+
+
 	public function addRole($role)
 	{
 		if (is_string($role)) {
@@ -44,6 +50,19 @@ class User extends Authenticatable
 		}
 		return $this->roles()->save(
 			Role::whereName($role->name)->firstOrFail()
+		);
+	}
+
+
+	public function addGroup($group)
+	{
+		if (is_string($group)) {
+			return $this->groups()->save(
+				Group::whereName($group)->firstOrFail()
+			);
+		}
+		return $this->groups()->save(
+			Group::whereName($group->name)->firstOrFail()
 		);
 	}
 
@@ -58,6 +77,17 @@ class User extends Authenticatable
 	}
 
 
+	public function unsubscribeGroup($group)
+	{
+		if (is_string($group)) {
+			return $this->groups()->detach(
+				Group::whereName($group)->firstOrFail()
+			);
+		}
+		return $this->groups()->detach($group);
+	}
+
+
 	public function hasRole( $role ) {
 
 		if ( is_string( $role ) ) {
@@ -67,7 +97,19 @@ class User extends Authenticatable
 		return $role->intersect( $this->roles )->count();
 	}
 
+
+	public function hasGroup( $group ) {
+
+		if ( is_string( $group ) ) {
+			return $this->groups->contains( 'name', $group );
+		}
+
+		return $group->intersect( $this->groups )->count();
+	}
+
+
 	public function isAdmin() {
 		return $this->hasRole( 'Admin' );
 	}
+
 }

@@ -2,6 +2,7 @@
 
 namespace Skill\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use Skill\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -40,5 +41,20 @@ class LoginController extends Controller
 	public function username()
 	{
 		return 'matricula';
+	}
+
+
+	/**
+	 * Attempt to log the user into the application.
+	 *
+	 * @param \Illuminate\Http\Request|Request $request
+	 *
+	 * @return bool
+	 */
+	protected function attemptLogin(Request $request)
+	{
+		return $this->guard()->attempt(
+			['matricula' =>  $request->matricula, 'password' => $request->password, 'active' => 1], $request->has('remember')
+		);
 	}
 }

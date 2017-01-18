@@ -5,7 +5,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Roles</div>
+                    <div class="panel-heading">
+                        Roles
+                        <a href="{{route('admin.roles.create')}}"
+                           class="btn btn-sm btn-primary pull-right">
+                            Novo</a>
+                    </div>
 
                     <div class="panel-body">
                         <table class="table table-bordered">

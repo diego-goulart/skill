@@ -12,9 +12,7 @@ class PermissionsController extends Controller
 
 	public function index()
 	{
-		if( php_sapi_name() != 'cli' ){
-			$this->authorize( 'role_admin' );
-		}
+		//$this->authorize( 'role_admin' );
 
 		$permissions = Permission::paginate();
 		return view('admin.permissions.index', compact('permissions'));
@@ -22,18 +20,16 @@ class PermissionsController extends Controller
 
 	public function create()
 	{
-		if( php_sapi_name() != 'cli' ){
-			$this->authorize( 'role_admin' );
-		}
+
+		$this->authorize( 'role_admin' );
 
 		return view('admin.permissions.create');
 	}
 
 	public function store(Request $request)
 	{
-		if( php_sapi_name() != 'cli' ){
-			$this->authorize( 'role_admin' );
-		}
+
+		$this->authorize( 'role_admin' );
 
 		Permission::create($request->all());
 		return redirect()->route('admin.permissions.index');

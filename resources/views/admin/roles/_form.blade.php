@@ -29,7 +29,12 @@
 
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 
-    <div class="col-md-6 col-md-push-9">
+    <div class="col-md-6 col-md-offset-4">
+
+        <a href="{{route('admin.roles.index')}}"
+           class="btn btn-default">
+            Voltar</a>
+
         {!! Form::submit('Salvar', ['class' => "btn btn-primary"]) !!}
 
 
