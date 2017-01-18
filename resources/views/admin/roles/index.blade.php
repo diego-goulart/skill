@@ -13,7 +13,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>Descrição</th>
-                                <th width="20%">Ações</th>
+                                <th width="30%">Ações</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -22,15 +22,20 @@
                                     <td>{{$role->name}}</td>
                                     <td>{{$role->description}}</td>
                                     <td>
-                                        {!! link_to_route('admin.role.edit',
+                                        {!! link_to_route('admin.roles.edit',
                                         $title = 'Editar',
                                         ['id' => $role->id],
-                                        ['class' => 'btn btn-sm btn-link']) !!}
+                                        ['class' => 'btn btn-link']) !!}
 
-                                        {!! link_to_route('admin.role.destroy',
+                                        {!! link_to_route('admin.roles.destroy',
                                         $title = 'Excluir',
                                         ['id' => $role->id],
-                                        ['class' => 'btn btn-sm btn-link']) !!}
+                                        ['class' => 'btn btn-link']) !!}
+
+                                        <a href="{{route('admin.roles.permissions',['id'=>$role->id])}}"
+                                           class="btn btn-link btn-danger">
+                                            Permissões
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

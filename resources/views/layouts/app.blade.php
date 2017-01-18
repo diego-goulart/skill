@@ -41,6 +41,7 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    @if(Auth::check())
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;<li class="dropdown">
@@ -50,14 +51,32 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    {!! link_to_route('admin.role.index', $title = 'Listar')!!}
+                                    {!! link_to_route('admin.roles.index', $title = 'Listar')!!}
                                 </li>
                                 <li>
-                                    {!! link_to_route('admin.role.create', $title = 'Cadastrar')!!}
+                                    {!! link_to_route('admin.roles.create', $title = 'Cadastrar')!!}
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Permissões <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    {!! link_to_route('admin.permissions.index', $title = 'Listar')!!}
+                                </li>
+                                <li>
+                                    {!! link_to_route('admin.permissions.create', $title = 'Cadastrar')!!}
+                                </li>
+                            </ul>
+                        </li>
+
+
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

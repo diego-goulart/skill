@@ -8,9 +8,9 @@
                     <div class="panel-heading">Cadastrar Role</div>
 
                     <div class="panel-body">
-                        {!! Form::model($role, ['route' => ['admin.role.update', $role->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['route' => 'admin.roles.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
 
-                        @include('admin.role._form')
+                        @include('admin.roles._form')
 
                         {!! Form::close() !!}
                     </div>
