@@ -3,6 +3,7 @@
 namespace Skill\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Skill\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '';
 
 	/**
 	 * Create a new controller instance.
@@ -56,5 +57,26 @@ class LoginController extends Controller
 		return $this->guard()->attempt(
 			['matricula' =>  $request->matricula, 'password' => $request->password, 'active' => 1], $request->has('remember')
 		);
+	}
+
+	public function redirectTo()
+	{
+		if(auth()->user()->isSupervisor() ){
+
+			return '/admin/supervisors';
+		};
+
+		if(auth()->user()->isLider() ){
+
+			return '/admin/lider';
+		};
+
+
+		if(auth()->user()->isOperador() ){
+
+			return '/admin/operador';
+		};
+
+		return '/home';
 	}
 }

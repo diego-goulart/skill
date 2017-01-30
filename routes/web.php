@@ -65,6 +65,43 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::put('groups/update/{id}', ['as' => 'groups.update', 'uses' => 'Admin\GroupsController@update']);
 		Route::get('groups/destroy/{id}', ['as' => 'groups.destroy', 'uses' => 'Admin\GroupsController@destroy']);
 
+
+
+		Route::get('questions', ['as' => 'questions.index', 'uses' => 'Admin\QuestionsController@index']);
+		Route::get('questions/new', ['as' => 'questions.create', 'uses' => 'Admin\QuestionsController@create']);
+		Route::post('questions/store', ['as' => 'questions.store', 'uses' => 'Admin\QuestionsController@store']);
+		Route::get('questions/edit/{id}', ['as' => 'questions.edit', 'uses' => 'Admin\QuestionsController@edit']);
+		Route::put('questions/update/{id}', ['as' => 'questions.update', 'uses' => 'Admin\QuestionsController@update']);
+		Route::get('questions/destroy/{id}', ['as' => 'questions.destroy', 'uses' => 'Admin\QuestionsController@destroy']);
+
+
+		Route::get('reports', ['as' => 'reports.index', 'uses' => 'Admin\ReportsController@index']);
+		Route::get('reports/new/{operador_id}', ['as' => 'reports.create', 'uses' => 'Admin\ReportsController@create']);
+		Route::post('reports/store', ['as' => 'reports.store', 'uses' => 'Admin\ReportsController@store']);
+		Route::get('reports/edit/{id}', ['as' => 'reports.edit', 'uses' => 'Admin\ReportsController@edit']);
+		Route::get('reports/view/{id}', ['as' => 'reports.view', 'uses' => 'Admin\ReportsController@show']);
+		Route::put('reports/update/{id}', ['as' => 'reports.update', 'uses' => 'Admin\ReportsController@update']);
+		Route::get('reports/destroy/{id}', ['as' => 'reports.destroy', 'uses' => 'Admin\ReportsController@destroy']);
+		Route::get('reports/sign/{id}', ['as' => 'reports.sign', 'uses' => 'Admin\ReportsController@sign']);
+
+
+		Route::get('supervisors', ['as' => 'supervisors', 'uses' => 'Admin\SupervisorController@dashboard']);
+		Route::get('supervisors/{id}', ['as' => 'supervisors.lider', 'uses' => 'Admin\SupervisorController@lider']);
+
+
+		Route::get('supervisors', ['as' => 'supervisors', 'uses' => 'Admin\SupervisorController@dashboard']);
+		Route::get('supervisors/{id}', ['as' => 'supervisors.lider', 'uses' => 'Admin\SupervisorController@lider']);
+
+		Route::get('lider', ['as' => 'lider', 'uses' => 'Admin\LiderController@dashboard']);
+		Route::get('lider/operador/{id}', ['as' => 'lider.operador', 'uses' => 'Admin\LiderController@operador']);
+		Route::get('lider/report/create/{id}', ['as' => 'lider.reports.create', 'uses' => 'Admin\LiderController@createReport']);
+		Route::get('lider/report/edit/{id}', ['as' => 'lider.reports.edit', 'uses' => 'Admin\LiderController@editReport']);
+		Route::post('lider/reports/store', ['as' => 'lider.reports.store', 'uses' => 'Admin\LiderController@storeReport']);
+		Route::put('lider/reports/update/{id}', ['as' => 'lider.reports.update', 'uses' => 'Admin\LiderController@updateReport']);
+
+
+		Route::get('operador', ['as' => 'operador', 'uses' => 'Admin\OperadorController@dashboard']);
+		Route::get('operador/reports/{id}', ['as' => 'operador.reports.view', 'uses' => 'Admin\OperadorController@show']);
 	});
 
 });

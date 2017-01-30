@@ -41,6 +41,18 @@ class User extends Authenticatable
 	}
 
 
+	public function reports()
+	{
+		return $this->hasMany(Report::class, 'owner_id', 'id');
+	}
+
+
+	public function reportsAboutMe()
+	{
+		return $this->hasMany(Report::class, 'operador_id', 'id');
+	}
+
+
 	public function addRole($role)
 	{
 		if (is_string($role)) {
@@ -110,6 +122,26 @@ class User extends Authenticatable
 
 	public function isAdmin() {
 		return $this->hasRole( 'Admin' );
+	}
+
+	public function isManager() {
+		return $this->hasRole( 'Manager' );
+	}
+
+	public function isCoordenador() {
+		return $this->hasRole( 'Coordenador' );
+	}
+
+	public function isSupervisor() {
+		return $this->hasRole( 'Supervisor' );
+	}
+
+	public function isLider() {
+		return $this->hasRole( 'Lider' );
+	}
+
+	public function isOperador() {
+		return $this->hasRole( 'Operador' );
 	}
 
 }

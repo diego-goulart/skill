@@ -40,12 +40,12 @@
                                         </a>
 
                                         <a href="{{route('admin.users.roles',['id'=>$user->id])}}" class="btn btn-link">
-                                            Roles
+                                            Permissões
                                         </a>
 
                                         <a href="{{route('admin.users.groups',['id'=>$user->id])}}"
                                            class="btn btn-link">
-                                            Groups
+                                            Equipe
                                         </a>
 
                                         @can('user_admin')

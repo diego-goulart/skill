@@ -4,7 +4,7 @@
     <li>
         {!! link_to_route('admin.roles.index', 'Roles')!!}
     </li>
-    @endcan
+
 
 
     <li class="dropdown">
@@ -21,8 +21,8 @@
             </li>
         </ul>
     </li>
-
-
+    @endcan
+    @can('user_manager')
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             Usuários <span class="caret"></span>
@@ -37,4 +37,14 @@
             </li>
         </ul>
     </li>
+    @endcan
+
+    @can('questions_admin')
+    <li><a href="{{route('admin.questions.index')}}">Avaliações </a></li>
+    @endcan
+
+    @can('report_manager')
+        <li><a href="{{route('admin.reports.index')}}">Monitorias </a></li>
+    @endcan
+
 </ul>

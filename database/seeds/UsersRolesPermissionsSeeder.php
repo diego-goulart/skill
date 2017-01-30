@@ -27,8 +27,6 @@ class UsersRolesPermissionsSeeder extends Seeder
 
 		$user->addRole($roleAdmin);
 
-
-
 		$userSupervisor = factory(User::class)->create([
 			'name' => 'Heber Arnestino',
 			'matricula' => '01007839',
@@ -61,6 +59,21 @@ class UsersRolesPermissionsSeeder extends Seeder
 		$groupAdmin = factory(Permission::class)->create([
 			'name'=>'group_admin',
 			'description' => 'Pode listar, criar, editar e excluir grupos'
+		]);
+
+		$operador = factory(Permission::class)->create([
+			'name'=>'operador',
+			'description' => 'Pode visualizar suas próprias avaliações e assiná-las'
+		]);
+
+		$question_admin = factory(Permission::class)->create([
+			'name'=>'questions_admin',
+			'description' => 'Pode administrar as avaliações.'
+		]);
+
+		$report_manager = factory(Permission::class)->create([
+			'name'=>'report_manager',
+			'description' => 'Pode administrar as monitorias.'
 		]);
 
 

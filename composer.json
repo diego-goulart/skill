@@ -22,7 +22,10 @@
         ],
         "psr-4": {
             "Skill\\": "app/"
-        }
+        },
+        "files": [
+          "app/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

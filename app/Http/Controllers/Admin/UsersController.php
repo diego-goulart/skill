@@ -55,9 +55,36 @@ class UsersController extends Controller
 
 	public function roles($id)
 	{
+		//
 		$this->authorize('user_manager');
 		$user = User::find($id);
-		$roles = Role::all();
+
+		if(auth()->user()->isSupervisor()){
+
+			$roles = Role::whereIn('name', ['Lider','Operador'])
+				->whereNotIn('id', auth()->user()->roles()->pluck('id')->toArray() )->get();
+		}
+
+		if(auth()->user()->isCoordenador()){
+
+			$roles = Role::whereIn('name', ['Supervisor','Lider','Operador'])
+			             ->whereNotIn('id', auth()->user()->roles()->pluck('id')->toArray() )->get();
+		}
+
+		if(auth()->user()->isManager()){
+
+			$roles = Role::whereIn('name', ['Coordenador','Supervisor','Lider','Operador'])
+			             ->whereNotIn('id', auth()->user()->roles()->pluck('id')->toArray() )->get();
+		}
+
+		if(auth()->user()->isAdmin()){
+
+			$roles = Role::whereNotIn('id', auth()->user()->roles()->pluck('id')->toArray() )->get();
+		}
+
+
+
+
 		return view('admin.users.roles', compact('user', 'roles'));
 	}
 

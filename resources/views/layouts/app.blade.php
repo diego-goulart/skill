@@ -35,9 +35,20 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+
+                    @if(Auth::check())
+                        <a class="navbar-brand"
+                           href="{{
+                           auth()->user()->isSupervisor() ? getenv('DASHBOARD_SUPERVISOR_URL') :
+                            auth()->user()->isLider() ? getenv('DASHBOARD_LIDER_URL') :
+                            auth()->user()->isOperador() ? getenv('DASHBOARD_OPERADOR_URL') :
+                            '/home'
+                            }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    @endif
+
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
