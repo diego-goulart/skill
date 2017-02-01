@@ -31,14 +31,14 @@
                                                 ({{$lider->groups()->count()}})
                                             </a>
                                         </td>
-                                        <td class="text-center">{{ getenv('META_MONITORIA') * diasUteis() }}</td>
+                                        <td class="text-center">{{ 2 * diasUteis() }}</td>
                                         <td class="text-center">
-                                            {{ getenv('META_MONITORIA') * (diasUteis(true)) }}
+                                            {{ 2 * (diasUteis(true)) }}
                                         </td>
                                         <td class="text-center">
                                             {{$lider->reports()->count()}}
                                             @if($lider->reports()->count() > 0)
-                                                ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') == 2  * (diasUteis(true) - 1)) )}})
+                                                ({{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true))) )}})
                                             @endif
 
                                         </td>
@@ -66,12 +66,14 @@
                                     @foreach($lideres as $lider)
                                         @foreach($lider->groups as $group )
                                             @foreach($group->delayed() as $report )
+                                                @if($report->atrazo > 0)
                                                 <tr>
                                                     <td>{{$lider->name}} - {{$group->name}}</td>
                                                     <td>{{$report->operador->name}}</td>
                                                     <td class="text-center">{{$report->atrazo}}</td>
                                                     <td><a href="#" class="btn btn-link">Ver</a></td>
                                                 </tr>
+                                                @endif
                                             @endforeach
                                         @endforeach
                                     @endforeach
