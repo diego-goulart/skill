@@ -27,9 +27,10 @@
                                             {{ getenv('META_MONITORIA') * (diasUteis(true) - 1) }}
                                         </td>
                                         <td class="text-center">
-                                            {{auth()->user()->reports()->count()}}&nbsp;&nbsp;
-                                            ({{ toPercentual ( (auth()->user()->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true) - 1)) )}}
-                                            )
+                                            {{auth()->user()->reports()->count()}}
+                                            @if(auth()->user()->reports()->count() > 0)
+                                            ({{ toPercentual ( (auth()->user()->reports()->count()) / (getenv('META_MONITORIA') ? getenv('META_MONITORIA'): 2 * (diasUteis(true) - 1)) )}})
+                                                @endif
                                         </td>
                                         <td class="text-center"></td>
                                     </tr>
@@ -65,7 +66,9 @@
                                             {{ $operador->reportsAboutMe()->count() }}
                                         </td>
                                         <td class="text-center">
+                                            @if($operador->reportsAboutMe()->count() > 0)
                                             {{ toDate($operador->reportsAboutMe()->get()->last()->created_at) }}
+                                                @endif()
                                         </td>
                                         <td class="text-center">
                                             <a href="{{route('admin.lider.reports.create',['id' => $operador->id])}}" class="btn btn-link">
