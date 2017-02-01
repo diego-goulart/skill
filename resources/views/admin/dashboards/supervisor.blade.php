@@ -33,11 +33,11 @@
                                         </td>
                                         <td class="text-center">{{ getenv('META_MONITORIA') * diasUteis() }}</td>
                                         <td class="text-center">
-                                            {{ getenv('META_MONITORIA') * (diasUteis(true) - 1) }}
+                                            {{ getenv('META_MONITORIA') * (diasUteis(true)) }}
                                         </td>
                                         <td class="text-center">
                                             {{$lider->reports()->count()}}&nbsp;&nbsp;
-                                            ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true) - 1)) )}}
+                                            ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true))) )}}
                                             )
                                         </td>
                                         <td class="text-center"></td>
