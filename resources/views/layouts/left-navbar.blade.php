@@ -22,6 +22,9 @@
         </ul>
     </li>
     @endcan
+    @can('group_admin')
+        <li><a href="{{route('admin.groups.index')}}">Equipes</a></li>
+    @endcan
     @can('user_manager')
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
