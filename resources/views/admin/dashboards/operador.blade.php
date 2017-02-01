@@ -46,7 +46,7 @@
                                                                 $parameters = ['id' => $report->id ],
                                                                 $attributes = ['class'=>"btn btn-sm btn-default"]) !!}
 
-                                                    {!! link_to_route('admin.reports.destroy',
+                                                    {!! link_to_route('admin.lider.reports.delete',
                                                     $title = 'Excluir',
                                                     $parameters = ['id' => $report->id ],
                                                     $attributes = ['class'=>"btn btn-sm btn-danger"]) !!}

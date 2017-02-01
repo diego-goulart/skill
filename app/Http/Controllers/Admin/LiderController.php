@@ -164,4 +164,17 @@ class LiderController extends Controller
 
 		return redirect()->route( 'admin.lider' );
 	}
+
+
+
+    public function destroyReport( $id ) {
+        $this->authorize( 'create_report' );
+        $report = Report::find($id);
+
+        if($report->owner_signature == false && $report->operador_signature == false){
+            Report::where('id', $id)->delete();
+        }
+
+        return redirect()->route( 'admin.lider' );
+    }
 }

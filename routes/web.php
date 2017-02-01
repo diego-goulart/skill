@@ -98,6 +98,7 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::get('lider/report/edit/{id}', ['as' => 'lider.reports.edit', 'uses' => 'Admin\LiderController@editReport']);
 		Route::post('lider/reports/store', ['as' => 'lider.reports.store', 'uses' => 'Admin\LiderController@storeReport']);
 		Route::put('lider/reports/update/{id}', ['as' => 'lider.reports.update', 'uses' => 'Admin\LiderController@updateReport']);
+		Route::get('lider/reports/{id}/delete', ['as' => 'lider.reports.delete', 'uses' => 'Admin\LiderController@destroyReport']);
 
 
 		Route::get('operador', ['as' => 'operador', 'uses' => 'Admin\OperadorController@dashboard']);

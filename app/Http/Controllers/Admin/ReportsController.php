@@ -185,6 +185,7 @@ class ReportsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
+        $this->authorize( 'create_report' );
 		$report = Report::find($id);
 
 		if($report->owner_signature == false && $report->operador_signature == false){
