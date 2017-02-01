@@ -26,12 +26,16 @@
                                 <tbody>
 
                                     @foreach($reports as $report)
-                                        <tr>
+                                        <tr class="{{$report->total <= 0 ? 'danger text-danger': ''}}">
                                             <td>
                                                 {{$report->created_at->format('Y-m-d H:i')}}&nbsp;
                                             </td>
                                             <td class="text-center">
+                                                @if($report->total <= 0)
+                                                    <span class="text-danger text-uppercase">ERRO FATAL</span>
+                                                    @else
                                                 {{ number($report->total, 0) }}
+                                                    @endif
                                             </td>
                                             <td class="text-center"></td>
                                             <td class="text-right">
