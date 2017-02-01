@@ -36,9 +36,11 @@
                                             {{ getenv('META_MONITORIA') * (diasUteis(true)) }}
                                         </td>
                                         <td class="text-center">
-                                            {{$lider->reports()->count()}}&nbsp;&nbsp;
-                                            ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true))) )}}
-                                            )
+                                            {{$lider->reports()->count()}}
+                                            @if($lider->reports()->count() > 0)
+                                            ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true))) )}})
+                                            @endif
+                                            
                                         </td>
                                         <td class="text-center"></td>
                                     </tr>
