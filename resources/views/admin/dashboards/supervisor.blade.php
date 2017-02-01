@@ -38,9 +38,9 @@
                                         <td class="text-center">
                                             {{$lider->reports()->count()}}
                                             @if($lider->reports()->count() > 0)
-                                            ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') * (diasUteis(true))) )}})
+                                                ({{ toPercentual ( ($lider->reports()->count()) / (getenv('META_MONITORIA') == 2  * (diasUteis(true) - 1)) )}})
                                             @endif
-                                            
+
                                         </td>
                                         <td class="text-center"></td>
                                     </tr>
