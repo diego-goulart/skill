@@ -1,28 +1,28 @@
 @foreach($questions as $question)
     @if(!isset($question->total))
-        <row>
+        <div class="row {{@$question->value < 0? 'bg-danger':'bg-success'}}">
             <div class="col col-md-2">
-                <b class="text-uppercase">{{$question->subject}}: </b>
+                <b class="text-uppercase {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">{{$question->subject}}: </b>
             </div>
-            <div class="col col-md-8">
+            <div class="col col-md-7  {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">{{$question->subject}}">
                 {{$question->description}}
             </div>
-            <div class="col col-md-2">
+            <div class="col col-md-3 {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">
                 {{number($question->value, 0)}}&nbsp;&nbsp;&nbsp;
                 <label class="radio-inline">
                     <input type="radio" name="{{$question->id}}" id="eval_{{$question->id}}_true"
                            value="true" {{ $question->response=="true" ? 'checked='.'"'.'checked'.'"' : '' }} required>
-                    Sim
+                    <b>SIM</b>
                 </label>
 
                 <label class="radio-inline">
                     <input type="radio" name="{{$question->id}}" id="eval_{{$question->id}}_false"
                            value="false" {{ $question->response=="false" ? 'checked='.'"'.'checked'.'"' : '' }} required>
-                    Não
+                    <b>NÃO</b>
                 </label>
 
             </div>
-        </row><div class="clearfix"></div><hr>
+        </div><div class="clearfix"></div><hr>
     @endif
 @endforeach
 
