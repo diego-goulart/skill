@@ -79,6 +79,10 @@ class LiderController extends Controller
 			}
 		}
 
+		if($value <= 0){
+		    $value = 0;
+        }
+
 
 
 		$operador = User::find($request->get( 'operador_id' ));
