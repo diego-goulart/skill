@@ -22,9 +22,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">{{ getenv('META_MONITORIA') * diasUteis() }}</td>
+                                        <td class="text-center">{{ getenv('META_MONITORIA') * (diasUteis() -1) }}</td>
                                         <td class="text-center">
-                                            {{ getenv('META_MONITORIA') * (diasUteis(true)) }}
+                                            {{ getenv('META_MONITORIA') * (diasUteis(true) -1) }}
                                         </td>
                                         <td class="text-center">
                                             {{auth()->user()->reports()->count()}}
