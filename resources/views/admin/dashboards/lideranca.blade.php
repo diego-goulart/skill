@@ -22,14 +22,14 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">{{ getenv('META_MONITORIA') * (diasUteis() -1) }}</td>
+                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis() -1) }}</td>
                                         <td class="text-center">
-                                            {{ getenv('META_MONITORIA') * (diasUteis(true) -1) }}
+                                            {{ config('app.meta_monitoria') * (diasUteis(true) -1) }}
                                         </td>
                                         <td class="text-center">
                                             {{auth()->user()->reports()->count()}}
                                             @if(auth()->user()->reports()->count() > 0)
-                                            ({{ toPercentual ( (auth()->user()->reports()->count()) / ( 2  * (diasUteis(true))) )}})
+                                            ({{ toPercentual ( (auth()->user()->reports()->count()) / ( config('app.meta_monitoria')  * (diasUteis(true) -1)) )}})
                                                 @endif
                                         </td>
                                         <td class="text-center"></td>

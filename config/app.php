@@ -27,6 +27,9 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+
+    'meta_monitoria' => 2,
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
