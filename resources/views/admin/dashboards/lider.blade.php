@@ -42,7 +42,9 @@
                                                     {{ $user->reportsAboutMe()->count() }}
                                                 </td>
                                                 <td class="text-center">
+                                                    @if($user->reportsAboutMe()->count() > 0)
                                                     {{ toDate($user->reportsAboutMe()->get()->last()->created_at) }}
+                                                    @endif
                                                 </td>
                                                 <td class="text-center"></td>
                                             </tr>
