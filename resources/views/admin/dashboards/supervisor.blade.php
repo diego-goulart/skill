@@ -31,7 +31,7 @@
                                                 ({{$lider->groups()->count()}})
                                             </a>
                                         </td>
-                                        <td class="text-center">{{ 2 * diasUteis() }}</td>
+                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis() -1) }}</td>
                                         <td class="text-center">
                                             {{ 2 * (diasUteis(true)) }}
                                         </td>
