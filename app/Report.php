@@ -12,6 +12,10 @@ class Report extends Model
     	'owner_signature',
     	'operador_signature',
     	'log',
+        'dt_call',
+        'tm_call',
+        'ctm_phone',
+        'ctm_name',
     	'total',
     	'obs',
     ];
