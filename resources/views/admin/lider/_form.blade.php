@@ -50,7 +50,7 @@
             <div class="col col-md-2">
                 <b class="text-uppercase {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">{{$question->subject}}: </b>
             </div>
-            <div class="col col-md-7  {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">{{$question->subject}}">
+            <div class="col col-md-7  {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">
                 {{$question->description}}
             </div>
             <div class="col col-md-3 {{@$question->value < 0? 'has-error text-danger':'has-success text-success'}}">
