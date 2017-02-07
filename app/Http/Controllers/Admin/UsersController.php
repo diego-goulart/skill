@@ -46,6 +46,43 @@ class UsersController extends Controller
 		return redirect()->route('admin.users.index');
 	}
 
+
+    public function resetPassword($token)
+    {
+        $user = User::where('matricula', $token)->first();
+
+        //dd($user);
+        return view('admin.users.reset', compact('user'));
+    }
+
+    public function saveReset(Request $request, $id)
+    {
+        $this->validate($request, $this->rules());
+        $input = $this->prepareFields($request);
+
+
+        User::find($id)->update($input);
+
+        if(auth()->user()->isOperador()) {
+
+            return redirect()->route('admin.operador');
+        }
+
+        if(auth()->user()->isLider()) {
+
+            return redirect()->route('admin.lider');
+        }
+
+        if(auth()->user()->isSupervisor()) {
+
+            return redirect()->route('admin.supervisors');
+        }
+
+        return redirect('/home');
+
+
+    }
+
 	public function destroy($id)
 	{
 		$this->authorize('user_admin');
@@ -161,4 +198,12 @@ class UsersController extends Controller
 		}
 		return $input;
 	}
+
+    protected function rules()
+    {
+        return [
+            'password' => 'required|confirmed|min:6',
+        ];
+    }
+
 }

@@ -12,6 +12,10 @@ class LiderController extends Controller
 {
     public function dashboard()
     {
+        if (auth()->check() && auth()->user()->confirmed == false) {
+            return redirect('admin/users/resetpwd/' . auth()->user()->matricula);
+        }
+
 	    if(auth()->user()->isLider())
 	    {
 		    $operadores = User::whereHas('roles', function ($query){

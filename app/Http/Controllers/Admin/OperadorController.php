@@ -9,13 +9,19 @@ use Skill\User;
 
 class OperadorController extends Controller
 {
-	public function dashboard()
+
+
+    public function dashboard()
 	{
+        if (auth()->check() && auth()->user()->confirmed == false) {
+            return redirect('admin/users/resetpwd/' . auth()->user()->matricula);
+        }
+
 		$id = auth()->user()->id;
 		$operador = User::find($id)->with('reportsAboutMe')->find($id);
 		$reports = $operador->reportsAboutMe()->get();
 
-			return view('admin.operador.dashboard', compact('operador','reports'));
+        return view('admin.operador.dashboard', compact('operador','reports'));
 
 	}
 

@@ -10,11 +10,13 @@ use Skill\User;
 class SupervisorController extends Controller
 {
 
-	public function __construct() {
-	}
 
 	public function dashboard()
     {
+        if (auth()->check() && auth()->user()->confirmed == false) {
+            return redirect('admin/users/resetpwd/' . auth()->user()->matricula);
+        }
+
     	$lideres = User::whereHas('roles', function ($query){
 		    $query->where('name', 'Lider');
 

@@ -47,7 +47,9 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::get('users/new', ['as' => 'users.create', 'uses' => 'Admin\UsersController@create']);
 		Route::post('users/store', ['as' => 'users.store', 'uses' => 'Admin\UsersController@store']);
 		Route::get('users/edit/{id}', ['as' => 'users.edit', 'uses' => 'Admin\UsersController@edit']);
+
 		Route::put('users/update/{id}', ['as' => 'users.update', 'uses' => 'Admin\UsersController@update']);
+		Route::put('users/savepwd/{id}', ['as' => 'users.savepwd', 'uses' => 'Admin\UsersController@saveReset']);
 		Route::get('users/destroy/{id}', ['as' => 'users.destroy', 'uses' => 'Admin\UsersController@destroy']);
 		Route::get('users/roles/{id}', ['as' => 'users.roles', 'uses' => 'Admin\UsersController@roles']);
 		Route::post('users/roles/{id}/store', ['as' => 'users.roles.store', 'uses' => 'Admin\UsersController@storeRole']);
@@ -56,7 +58,7 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::get('users/groups/{id}', ['as' => 'users.groups', 'uses' => 'Admin\UsersController@groups']);
 		Route::post('users/groups/{id}/store', ['as' => 'users.groups.store', 'uses' => 'Admin\UsersController@storeGroup']);
 		Route::get('users/groups/{id}/unsubscribe/{group_id}', ['as' => 'users.groups.unsubscribe', 'uses' => 'Admin\UsersController@unsubscribeGroup']);
-
+        Route::get('users/resetpwd/{token}', ['as' => 'users.reset', 'uses' => 'Admin\UsersController@resetPassword']);
 
 		Route::get('groups', ['as' => 'groups.index', 'uses' => 'Admin\GroupsController@index']);
 		Route::get('groups/new', ['as' => 'groups.create', 'uses' => 'Admin\GroupsController@create']);
