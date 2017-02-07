@@ -18,7 +18,7 @@
                                     <th class="text-center">Objetivo no mês</th>
                                     <th class="text-center">Meta p/ Período</th>
                                     <th class="text-center">Realizado</th>
-                                    <th>&nbsp;</th>
+                                    <th class="text-center">%</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -33,16 +33,14 @@
                                         </td>
                                         <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis() -1) }}</td>
                                         <td class="text-center">
-                                            {{ 2 * (diasUteis(true)) }}
+                                            {{ 2 * (diasUteis(true) -1) }}
                                         </td>
                                         <td class="text-center">
                                             {{$lider->reports()->count()}}
-                                            @if($lider->reports()->count() > 0)
-                                                ({{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true))) )}})
-                                            @endif
-
                                         </td>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">@if($lider->reports()->count() > 0)
+                                                {{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true))) )}}
+                                            @endif</td>
                                     </tr>
 
                                 @endforeach
