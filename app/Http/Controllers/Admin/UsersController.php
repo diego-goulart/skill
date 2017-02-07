@@ -13,7 +13,14 @@ class UsersController extends Controller
 	public function index()
 	{
 		$this->authorize('user_manager');
-		$users = User::orderBy('id','desc')->paginate();
+
+		if(auth()->user()->isSupervisor())
+        {
+            $users = User::where('matricula', '<>', '01007391')->orderBy('id','desc')->paginate();
+        }else{
+            $users = User::orderBy('id','desc')->paginate();
+        }
+
 		return view('admin.users.index', compact('users'));
 	}
 
@@ -45,6 +52,15 @@ class UsersController extends Controller
 		User::find($id)->update($input);
 		return redirect()->route('admin.users.index');
 	}
+
+
+	public function forceReset($token)
+    {
+        $this->authorize('user_manager');
+        User::where('matricula', $token)->update(['confirmed' => 0, 'password' => bcrypt("123456")]);
+        return redirect()->back();
+
+    }
 
 
     public function resetPassword($token)

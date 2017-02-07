@@ -59,6 +59,7 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 		Route::post('users/groups/{id}/store', ['as' => 'users.groups.store', 'uses' => 'Admin\UsersController@storeGroup']);
 		Route::get('users/groups/{id}/unsubscribe/{group_id}', ['as' => 'users.groups.unsubscribe', 'uses' => 'Admin\UsersController@unsubscribeGroup']);
         Route::get('users/resetpwd/{token}', ['as' => 'users.reset', 'uses' => 'Admin\UsersController@resetPassword']);
+        Route::get('users/freeze/{token}', ['as' => 'users.freeze', 'uses' => 'Admin\UsersController@forceReset']);
 
 		Route::get('groups', ['as' => 'groups.index', 'uses' => 'Admin\GroupsController@index']);
 		Route::get('groups/new', ['as' => 'groups.create', 'uses' => 'Admin\GroupsController@create']);
