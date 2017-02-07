@@ -2,6 +2,7 @@
 
 namespace Skill\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Skill\Http\Controllers\Controller;
 use Skill\Question;
@@ -57,7 +58,6 @@ class LiderController extends Controller
 
 	public function storeReport( Request $request ) {
 
-
 		$this->authorize( 'create_report' );
 		$report    = collect( $request->all() )->except( '_token' )->toArray();
 		$questions = Question::all()->toArray();
@@ -94,14 +94,19 @@ class LiderController extends Controller
 		$groups = $operador->groups()->get();
 
 
+
+
 		$model = Report::create( [
 			'owner_id'    => auth()->user()->id,
 			'operador_id' => $request->get( 'operador_id' ),
 			'log'         => $result->toJson(),
+            "ctm_name"    => $request->get( 'ctm_name' ),
+            "dt_call"     => $request->get( 'dt_call' ),
+            "tm_call"     => $request->get( 'tm_call' ),
+            "ctm_phone"   => $request->get( 'ctm_phone' ),
 			'total'       => $value,
 			'obs'         => $request->get( 'obs' ),
 		] );
-
 
 		$model->addGroup($groups);
 		return redirect()->route( 'admin.lider' );
