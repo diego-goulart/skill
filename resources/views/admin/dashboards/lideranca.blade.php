@@ -58,10 +58,10 @@
                                 @foreach($operadores as $operador)
                                     <tr>
                                         <td>
-                                            <a href="{{route('admin.lider.operador',['id' => $operador->id])}}" class="btn btn-link"></a>
+                                            <a href="{{route('admin.lider.operador',['id' => $operador->id])}}" class="btn btn-link">{{$operador->name}}</a>
                                         </td>
                                         <td>
-                                            {{$operador->name}} - {{ number($operador->reportsAboutMe()->avg('total'), 0) }}
+                                            {{ number($operador->reportsAboutMe()->avg('total'), 0) }}
                                         </td>
                                         <td>{{$operador->groups()->first()->name}}</td>
 
