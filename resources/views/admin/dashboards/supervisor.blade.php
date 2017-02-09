@@ -28,7 +28,6 @@
                                         <td>
                                             <a href="{{route('admin.supervisors.lider', ['id' => $lider->id])}}">
                                                 {{$lider->name}}&nbsp;
-                                                ({{$lider->groups()->count()}})
                                             </a>
                                         </td>
                                         <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis() -1) }}</td>
