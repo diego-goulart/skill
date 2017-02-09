@@ -55,7 +55,7 @@
                                     <tr>
                                         <th>Lider - Equipe</th>
                                         <th>Operador</th>
-                                        <th class="text-center">Realização da Monitoria</th>
+                                        <th class="text-center">Dias em atraso</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                     </thead>
