@@ -83,67 +83,6 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
-                            <div class="clearfix"></div>
-
-                            <h3>Monitorias sem feedback</h3>
-
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Operador</th>
-                                    <th>Equipe</th>
-                                    <th class="text-center">Atraso</th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($operadores as $operador)
-                                    @foreach($operador->groups as $group )
-                                        @foreach($group->delayed() as $report )
-                                            @if($report->atrazo >= 1)
-                                                <tr>
-                                                    <td>{{$operador->name}} - {{number($group->delayed()->avg('total'), 0)}}</td>
-                                                    <td>{{$group->name}}</td>
-                                                    <td class="text-center">{{$report->atrazo}} dia (s)</td>
-                                                    <td><a href="{{route('admin.reports.view',['id' => $report->id])}}" class="btn btn-link">Ver</a></td>
-                                                    <td>
-                                                            @if($report->owner_signature == false || $report->operador_signature == false)
-                                                                {!! link_to_route('admin.lider.reports.edit',
-                                                                $title = 'Editar',
-                                                                $parameters = ['id' => $report->id ],
-                                                                $attributes = ['class'=>"btn btn-sm btn-default"]) !!}
-
-                                                                {!! link_to_route('admin.reports.destroy',
-                                                                $title = 'Excluir',
-                                                                $parameters = ['id' => $report->id ],
-                                                                $attributes = ['class'=>"btn btn-sm btn-danger"]) !!}
-                                                            @endif
-
-                                                            @if($report->owner_signature == false
-                                                                    && $report->owner_id === auth()->user()->id)
-                                                                {!! link_to_route('admin.reports.sign',
-                                                                   $title = 'Assinar',
-                                                                   $parameters = ['id' => $report->id ],
-                                                                   $attributes = ['class'=>"btn btn-sm btn-success"]) !!}
-                                                            @endif
-
-
-                                                        @if($report->operador_signature == false
-                                                            && $report->operador_id === auth()->user()->id)
-                                                            {!! link_to_route('admin.reports.sign',
-                                                               $title = 'Assinar',
-                                                               $parameters = ['id' => $report->id ],
-                                                               $attributes = ['class'=>"btn btn-sm btn-success"]) !!}
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                @endif
-                                        @endforeach
-                                    @endforeach
-                                @endforeach
-                                </tbody>
-                            </table>
                         </div>
 
                     </div>
