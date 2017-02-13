@@ -38,7 +38,7 @@
                                             {{$lider->reports()->count()}}
                                         </td>
                                         <td class="text-center">@if($lider->reports()->count() > 0)
-                                                {{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true))) )}}
+                                                {{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true) -1)) )}}
                                             @endif</td>
                                     </tr>
 
