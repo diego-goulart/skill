@@ -10,7 +10,7 @@ function diasUteis($todayIsLast = false, $first = null)
 }
 
 
-function calcAtraso(Carbon $date, bool $number = false)
+function calcAtraso($date, $number = false)
 {
 	Carbon::setLocale('pt_BR');
 
