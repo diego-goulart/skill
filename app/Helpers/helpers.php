@@ -57,3 +57,9 @@ function toDate($date)
 {
 	return Carbon::createFromFormat('Y-m-d H:i:s',$date,'America/Sao_Paulo')->format('d-m-Y');
 }
+
+
+function presentMonth()
+{
+    return Carbon::today('America/Sao_Paulo')->month;
+}
