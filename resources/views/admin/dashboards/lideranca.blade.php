@@ -17,7 +17,7 @@
                                     <th class="text-center">Objetivo no mês</th>
                                     <th class="text-center">Meta p/ Período</th>
                                     <th class="text-center">Realizado</th>
-                                    <th>%</th>
+                                    <th class="text-center">%</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -27,11 +27,11 @@
                                             {{ config('app.meta_monitoria') * (diasUteis(true) -1) }}
                                         </td>
                                         <td class="text-center">
-                                            {{auth()->user()->reports()->count()}}
+                                            {{auth()->user()->reports()->whereMonth('created_at', presentMonth())->count()}}
                                         </td>
                                         <td class="text-center">
                                             @if(auth()->user()->reports()->count() > 0)
-                                                ({{ toPercentual ( (auth()->user()->reports()->count()) / ( config('app.meta_monitoria')  * (diasUteis(true) -1)) )}})
+                                                ({{ toPercentual ( (auth()->user()->reports()->whereMonth('created_at', presentMonth())->count()) / ( config('app.meta_monitoria')  * (diasUteis(true) -1)) )}})
                                             @endif
                                         </td>
                                     </tr>
@@ -61,16 +61,16 @@
                                             <a href="{{route('admin.lider.operador',['id' => $operador->id])}}" class="btn btn-link">{{$operador->name}}</a>
                                         </td>
                                         <td>
-                                            {{ number($operador->reportsAboutMe()->avg('total'), 0) }}
+                                            {{ number($operador->reportsAboutMe()->whereMonth('created_at', presentMonth())->avg('total'), 0) }}
                                         </td>
                                         <td>{{$operador->groups()->first()->name}}</td>
 
                                         <td class="text-center">
-                                            {{ $operador->reportsAboutMe()->count() }}
+                                            {{ $operador->reportsAboutMe()->whereMonth('created_at', presentMonth())->count() }}
                                         </td>
                                         <td class="text-center">
-                                            @if($operador->reportsAboutMe()->count() > 0)
-                                            {{ toDate($operador->reportsAboutMe()->get()->last()->created_at) }}
+                                            @if($operador->reportsAboutMe()->whereMonth('created_at', presentMonth())->count() > 0)
+                                            {{ toDate($operador->reportsAboutMe()->whereMonth('created_at', presentMonth())->get()->last()->created_at) }}
                                                 @endif()
                                         </td>
                                         <td class="text-center">
