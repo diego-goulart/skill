@@ -37,8 +37,8 @@
                                         <td class="text-center">
                                             {{$lider->reports()->whereMonth('created_at', presentMonth())->count()}}
                                         </td>
-                                        <td class="text-center">@if($lider->reports()->count() > 0)
-                                                {{ toPercentual ( ($lider->reports()->count()) / ( 2  * (diasUteis(true) -1)) )}}
+                                        <td class="text-center">@if($lider->reports()->whereMonth('created_at', presentMonth())->count() > 0)
+                                                {{ toPercentual ( ($lider->reports()->whereMonth('created_at', presentMonth())->count()) / ( 2  * (diasUteis(true) -1)) )}}
                                             @endif</td>
                                     </tr>
 

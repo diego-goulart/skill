@@ -24,7 +24,10 @@ class Group extends Model
 
 	public function delayed()
 	{
-		$reports = $this->reports()->where('operador_signature', null)->get();
+		$reports = $this->reports()
+            ->where('operador_signature', null)
+            ->whereMonth('reports.created_at', presentMonth())
+            ->get();
 
 		foreach ($reports->all() as $report)
 		{
