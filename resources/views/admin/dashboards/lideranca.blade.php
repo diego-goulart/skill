@@ -22,16 +22,16 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis() -1) }}</td>
+                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis()-1) }}</td>
                                         <td class="text-center">
-                                            {{ config('app.meta_monitoria') * (diasUteis(true) -1) }}
+                                            {{ config('app.meta_monitoria') * (diasUteis(true)-1) }}
                                         </td>
                                         <td class="text-center">
                                             {{auth()->user()->reports()->whereMonth('created_at', presentMonth())->count()}}
                                         </td>
                                         <td class="text-center">
                                             @if(auth()->user()->reports()->count() > 0)
-                                                ({{ toPercentual ( (auth()->user()->reports()->whereMonth('created_at', presentMonth())->count()) / ( config('app.meta_monitoria')  * (diasUteis(true) -1)) )}})
+                                                ({{ toPercentual ( (auth()->user()->reports()->whereMonth('created_at', presentMonth())->count()) / ( config('app.meta_monitoria')  * (diasUteis(true)-1)) )}})
                                             @endif
                                         </td>
                                     </tr>

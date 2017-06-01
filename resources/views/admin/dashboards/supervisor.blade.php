@@ -30,15 +30,15 @@
                                                 {{$lider->name}}&nbsp;
                                             </a>
                                         </td>
-                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis()) }}</td>
+                                        <td class="text-center">{{ config('app.meta_monitoria') * (diasUteis()-1) }}</td>
                                         <td class="text-center">
-                                            {{ 2 * (diasUteis(true) -1) }}
+                                            {{ 2 * (diasUteis(true)) }}
                                         </td>
                                         <td class="text-center">
                                             {{$lider->reports()->whereMonth('created_at', presentMonth())->count()}}
                                         </td>
                                         <td class="text-center">@if($lider->reports()->whereMonth('created_at', presentMonth())->count() > 0)
-                                                {{ toPercentual ( ($lider->reports()->whereMonth('created_at', presentMonth())->count()) / ( 2  * (diasUteis(true) -1)) )}}
+                                                {{ toPercentual ( ($lider->reports()->whereMonth('created_at', presentMonth())->count()) / ( 2  * (diasUteis(true)-1)) )}}
                                             @endif</td>
                                     </tr>
 
